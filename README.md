@@ -9,9 +9,9 @@ Test project which get info about plot by cadastral link
 - Run `php yii migrate`
 
 ## Actions
-Search by web interface: [Web](/site/search).
+Search by web interface: `/site/search`.
 
-Search by api: [API](plot-api/search). Required param egrn: egrn's separated by comma.
+Search by api: `/plot-api/search`. Required param egrn: egrn's separated by comma.
 
 Search by console: `php yii plot/search {comma_separated_egrns}`.
 
