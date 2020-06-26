@@ -12,6 +12,12 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'container' => [
+        'definitions' => [
+            'app\models\EgrnApiSearchInterface' => 'app\components\PlotApi',
+            'app\models\EgrnSearchInterface' => 'app\models\Plot'
+        ]
+    ],
     'language' => 'en-US',
     'components' => [
         'db' => $db,

@@ -3,12 +3,18 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
+
+use app\models\SearchForm;
 use app\models\LoginForm;
 use app\models\ContactForm;
+
+use app\services\PlotService;
+
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 class SiteController extends Controller
 {
@@ -124,5 +130,27 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+
+    /**
+     * Search plots by egrns.
+     *
+     * @return string
+     */
+    public function actionSearch()
+    {
+        $searchModel = new SearchForm();
+        $plotsProvider = false;
+
+        if ($searchModel->load(Yii::$app->request->get()) && $searchModel->validate()){
+            $formattedEgrns = $searchModel->formattedEgrns;
+            $plotsProvider = Yii::createObject(PlotService::class)->getByEgrn($formattedEgrns);
+        }
+
+        return $this->render('search', [
+            'searchModel' => $searchModel,
+            'plotsProvider' => $plotsProvider
+        ]);
     }
 }

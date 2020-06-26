@@ -27,6 +27,12 @@ $config = [
         ],
         'db' => $db,
     ],
+    'container' => [
+        'definitions' => [
+            'app\models\EgrnApiSearchInterface' => 'app\components\PlotApi',
+            'app\models\EgrnSearchInterface' => 'app\models\Plot'
+        ]
+    ],
     'params' => $params,
     /*
     'controllerMap' => [

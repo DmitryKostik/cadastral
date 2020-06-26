@@ -7,9 +7,16 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+    ],
+    'container' => [
+        'definitions' => [
+            'app\models\EgrnApiSearchInterface' => 'app\components\PlotApi',
+            'app\models\EgrnSearchInterface' => 'app\models\Plot'
+        ]
     ],
     'components' => [
         'request' => [
@@ -43,14 +50,16 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'formatter' => [
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'RUB',
+        ],
     ],
     'params' => $params,
 ];
